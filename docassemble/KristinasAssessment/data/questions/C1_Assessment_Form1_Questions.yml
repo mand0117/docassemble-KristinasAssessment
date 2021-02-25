@@ -1,0 +1,56 @@
+---
+mandatory: True
+question: Hello world!
+subquestion: |
+  ### Your Information
+  
+  Thanks for completing the questions required for the Form 1
+  We have collected this data from you
+  
+  Information|Your Input
+  -----------|----------
+  The State            | ${ KBMstate }
+  The Division         | ${ KBMdivision }
+  Name of Applicant    | ${ KBMfirstname } ${ KBMlastname }
+  Name of Respondent   | ${ KBMrespondentname } ${ KBMrespondentlastname }
+  The Date             | ${ some_date }
+buttons:
+  - I'm done: exit
+  - Do it again!: restart
+---
+question: Please select the District of registry. 
+fields:
+  - State: KBMstate
+    choices:
+      - New South Wales
+      - Victoria
+      - Queensland
+      - Western Australia
+      - South Australia
+      - Tasmania
+---
+question: Please select the Division. 
+fields:
+  - State: KBMdivision
+    choices:
+      - Corporations
+      - Criminal
+      - Employment
+      - General
+---
+question: What is the Applicants name?
+fields:
+  - First Name: KBMfirstname
+  - Last Name: KBMlastname
+---
+question: What is the Respondents name?
+fields:
+  - First Name: KBMrespondentname
+  - Last Name: KBMrespondentlastname
+---
+question: |
+  Give me a date.
+fields:
+  - Date: some_date
+    datatype: date
+---
