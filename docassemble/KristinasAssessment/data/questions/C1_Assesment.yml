@@ -39,21 +39,12 @@ subquestion:
   It seems you do not meet our eligibility requirements. This app will only prepare forms for the Federal Court or the Federal Circuit Court. 
 buttons:
   - Exit: exit
-  - Continue: continue
----
-# This is the eligible endpoint.
-event: endpoint['eligible']
-question: You are eligible
-subquestion: |
-  Congratulations, you meet our
-  eligibility requirements.
-buttons:
-  - Exit: exit
-  - Continue: continue
+  - Restart: restart
 ---
 #Form 1 Questions
-mandatory: True
-question: Hello world!
+mandatory: true
+event: endpoint['eligible']
+question: Form 1 Responses
 subquestion: |
   ### Your Information
   
@@ -62,14 +53,24 @@ subquestion: |
   
   Information|Your Input
   -----------|----------
+  Parties              | ${ KBMparty1 } ${ KBMparty2 }
   The State            | ${ KBMstate }
   The Division         | ${ KBMdivision }
   Name of Applicant    | ${ KBMfirstname } ${ KBMlastname }
   Name of Respondent   | ${ KBMrespondentname } ${ KBMrespondentlastname }
   The Date             | ${ some_date }
+  Signed by            | ${ KBMsignedbyfirstname } ${ KBMsignedbylastname }
+  Capacity             | ${ KBMcapacity }
+attachement: 
+ docx template file: Form_1.docx
 buttons:
   - I'm done: exit
   - Do it again!: restart
+---
+question: What are the names of the Parties?
+fields:
+  - Party 1: KBMparty1
+  - Party 2: KBMparty2
 ---
 question: Please select the District of registry. 
 fields:
@@ -106,4 +107,17 @@ question: |
 fields:
   - Date: some_date
     datatype: date
+---
+question: Who is this form signed by?
+fields:
+  - First Name: KBMsignedbyfirstname
+  - Last Name: KBMsignedbylastname
+---
+question: Please select the Capacity of the signee. 
+fields:
+  - Capacity: KBMcapacity
+    choices:
+      - Applicant
+      - Lawyer for the Applicant
+      - Respondent
 ---
