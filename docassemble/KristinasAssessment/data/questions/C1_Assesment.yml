@@ -48,8 +48,8 @@ question: Form 1 Responses
 subquestion: |
   ### Your Information
   
-  Thanks for completing the questions required for the Form 1
-  We have collected this data from you
+  Thanks for completing the questions required for the Form 1.
+  We have collected this data from you and if you wish, you can email the Form 1   to yourself below. 
   
   Information|Your Input
   -----------|----------
@@ -61,11 +61,21 @@ subquestion: |
   The Date             | ${ some_date }
   Signed by            | ${ KBMsignedbyfirstname } ${ KBMsignedbylastname }
   Capacity             | ${ KBMcapacity }
-attachement: 
+  Filed on behalf of   | ${ KBMfiledby } ${ KBMroleofparty }   
+  Prepared by          | ${ KBMpreparedby } 
+  Law Firm             | ${ KBMlawfirm } 
+  Telephone number     | ${ KBMtelephonenumber }
+  Fax number           | ${ KBMfaxnumber }
+  Lawyers email        | ${ target_variable }
+  Address for service  | ${ KBMaddress } ${ KBMstateoffirm } ${ KBMpostcode }
+attachment: 
  docx template file: Form_1.docx
+ valid formats:
+      - pdf
 buttons:
-  - I'm done: exit
-  - Do it again!: restart
+  - Exit: exit
+    url: https://www.fedcourt.gov.au/
+  - Do it again: restart
 ---
 question: What are the names of the Parties?
 fields:
@@ -120,4 +130,37 @@ fields:
       - Applicant
       - Lawyer for the Applicant
       - Respondent
+---
+question: Who is this form filed on behalf of?
+fields:
+  - Name: KBMfiledby
+  - Role of party: KBMroleofparty
+---
+question: Who is this form prepared by?
+fields:
+  - Name: KBMpreparedby
+---
+question: What is the name of the law firm?
+fields:
+  - Name: KBMlawfirm
+---
+question: What is the telephone number of the firm?
+fields:
+  - Name: KBMtelephonenumber
+---
+question: What is the fax number of the firm?
+fields:
+  - Name: KBMfaxnumber
+---
+question: What is the email address?
+fields:
+  - E-mail: target_variable
+    datatype: email
+    required: False
+---
+question: What is the address for service? 
+fields:
+  - Address: KBMaddress
+  - State: KBMstateoffirm
+  - Postcode: KBMpostcode
 ---
